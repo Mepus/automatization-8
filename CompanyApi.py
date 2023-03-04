@@ -35,7 +35,7 @@ class CompanyApi:
         resp = requests.post(self.url +'/company', json=company, headers=my_headers)
         return resp.json
 
-    def edit(self, new_id, new_name, new_descr):
+    def edit_company(self, new_id, new_name, new_descr):
         my_headers = {}
         my_headers["x-clien-token"] = self.get_token()
 
@@ -47,7 +47,7 @@ class CompanyApi:
         return resp.json()
     
 
-    def delete(self, id):
+    def delete_company(self, id):
         my_headers = {}
         my_headers["x-clien-token"] = self.get_token()
         resp = requests.get(self.url+'/company/delete/'+ str(id), headers=my_headers, headers = my_headers)

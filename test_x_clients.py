@@ -6,7 +6,7 @@ api = CompanyApi("https://x-clients-be.onrender.com")
 
 def test_get_companies():
     body = api.get_company_list()
-    assert len(body) > 0 # == x
+    assert len(body) > 1 
 
 def test_get_active_companies():
     # 1. Получить список всех компаний
@@ -21,7 +21,7 @@ def test_get_active_companies():
 
 
 
-def test_add_new():
+def test_add_new_company():
 
     body = api.get_company_list()
     len_before = len(body)
@@ -51,7 +51,7 @@ def test_get_one_company():
     assert new_company["description"] == descr
     assert new_company["isActive"] == True
 
-def test_edit():
+def test_edit_company():
     name = 'Company to be edited'
     descr = 'Edit me'
     result = api.create_company(name, descr)
@@ -65,7 +65,7 @@ def test_edit():
     assert edited ["description"] == new_descr
     assert edited ["isActive"] == True
 
-def test_delete():
+def test_delete_company():
     name = 'Company to be deleted'
     descr = 'Edit me'
     result = api.create_company(name, descr)
@@ -81,7 +81,7 @@ def test_delete():
     assert body [-1]["id"] != new_id
 
 
-def test_deactivate():
+def test_deactivate_company():
 
     name = "Company to be deactivated"
     result = api.create_company(name = name, description=descr)
