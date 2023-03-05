@@ -8,19 +8,6 @@ def test_get_companies():
     body = api.get_company_list()
     assert len(body) > 1 
 
-def test_get_active_companies():
-    # 1. Получить список всех компаний
-    full_list = api.get_company_list()
-
-    # 2. Получить список активных компаний
-    filtered_list = api.get_company_list(params_to_add={'active' : 'true'})
-
-
-    # 3. Проверить, что список 1 > списка 2
-    assert len(full_list) > len(filtered_list)
-
-
-
 def test_add_new_company():
 
     body = api.get_company_list()
@@ -37,6 +24,37 @@ def test_add_new_company():
     assert body[-1]["name" == name]
     assert body[-1]["description" == descr]
     assert body[-1]["id"] == new_id
+   
+
+def test_get_active_companies():
+    # 1. Получить список всех компаний
+    full_list = api.get_company_list()
+
+    # 2. Получить список активных компаний
+    filtered_list = api.get_company_list(params_to_add={'active' : 'true'})
+
+
+    # 3. Проверить, что список 1 > списка 2
+    assert len(full_list) > len(filtered_list)
+
+
+
+# def test_add_new_company():
+
+#     body = api.get_company_list()
+#     len_before = len(body)
+
+#     name = "Autotest"
+#     descr = "Descr"
+#     result = api.create_company(name = name, description=descr)
+#     new_id = result["id"]
+#     body = api.get_company_list()
+#     len_after = len(body)
+
+#     assert len_after - len_before == 1
+#     assert body[-1]["name" == name]
+#     assert body[-1]["description" == descr]
+#     assert body[-1]["id"] == new_id
    
 def test_get_one_company():
     name = 'VS Code'
